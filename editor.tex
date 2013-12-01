@@ -1,0 +1,47 @@
+\chapter*{出版部報告}
+\section*{psutilsを使ったコピー本の面付け}
+この彙報を継続的に発行するために、\LaTeX を使ってコピー本を印刷するための方法を簡単に
+述べておく。
+まず、言うまでもなく\LaTeX のソースファイルを作成する。
+その後、袋とじ状にして印刷するために、紙の片面に2頁分印刷するよう配置ししなければ
+ならない。これは結構大変な作業である。
+しかし、一旦PostScriptに変換し、PostScript関連ユーティリティを使うと簡単に
+ページを配置することができる。
+
+Debian GNU/LinuxやUbuntsuを使っているのであれば、psutilsパッケージをインストール
+すればよい。
+\begin{listing}
+$ sudo apt-get install psutils 
+\end{listing}
+%$
+%
+インストールできたら、dvips コマンドでdviファイルをPostScriptに変換する。
+\begin{listing}
+$ dvips foo.dvi
+\end{listing} 
+%$
+次にpsbookコマンドで袋とじ状にページを配置し、psnupコマンドで2頁を1頁にまとめて
+ps2pdfコマンドでPDFに変換する。
+% A4で出力するとき
+\begin{listing}
+psbook foo.ps |psnup -2 | ps2pdf - foo.pdf
+\end{listing}
+これだとA4の紙に2頁印刷されるので、A5のコピー本ができあがる。
+A3の紙に印刷して、A4のコピー本を作るためのPDFを生成するには、psresizeコマンドで
+$\sqrt{2}$倍に拡大する。拡大しても用紙サイズの設定がA4のままなので、ps2psコマンドで
+用紙サイズをA3に変更する。
+% A3で出力する時
+\begin{listing}
+psbook foo.ps |psnup -2|psresize -pa3 |ps2ps -sPAPERSIZE=a3 - - | ps2pdf - foo.pdf
+\end{listing}
+これでA3サイズに2頁印刷するPDFができる。しかし、時々生成されたPDFファイルの向きが90度ずれることがあり、印刷に失敗する可能性がある。
+A4に2頁印刷する場合はこのようなことがないので、A4用のPDFを作成し、プリンタの設定でA3に拡大するほうが確実だろう。
+
+印刷は、PDFなのでほとんどのプリンタで印刷できるだろう。
+PostScriptを直接印刷できるプリンタが使えるなら、ps2pdfでPDFにする必要はない。
+本工房はプリンタを所有していないので、この彙報はセブンイレブンのネットプリントを使って
+印刷した。セブンイレブンのネットプリントの場合、アップロードの時点で用紙サイズをA3に設定し
+マルチコピー機で両面コピーを設定する。ここで「短辺とじ」を選択しなければならないことに注意する。
+
+psutilsは、PostScriptをいじるためのコマンド群であるから、PostScriptのソースが必ずしも\TeX である必要はない。
+例えば、コミスタで書いたマンガをEPSで出力して、PSに変換して...ということも可能な筈である。
