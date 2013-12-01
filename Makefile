@@ -1,5 +1,5 @@
 TEX=platex
-DVIPDF=dvipdf
+DVIPDF=dvipdfmx
 DVIPS=dvips
 
 PREFIX=ihou
