@@ -1,5 +1,6 @@
 TEX=platex
 DVIPDF=dvipdfmx
+DVIPDFFLAGS=-pa4
 DVIPS=dvips
 
 PREFIX=ihou
@@ -8,6 +9,7 @@ PDF=${PREFIX}.pdf
 PS=${PREFIX}.ps
 BOOK=${PREFIX}-print.pdf
 TEXFILES=ihou.tex iq.tex editor.tex colophon.tex cover.tex
+PSFILES=am.ps carr.ps sig.ps i.ps q.ps demodulate.ps out.ps
 
 .suffix: .tex .dvi
 
@@ -20,7 +22,7 @@ ps: ${PS}
 book: ${BOOK}
 
 
-${DVI}: ${TEXFILES}
+${DVI}: ${TEXFILES} ${PSFILES}
 	${TEX} ihou.tex
 	${TEX} ihou.tex
 
