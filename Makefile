@@ -28,7 +28,7 @@ ${DVI}: ${TEXFILES} ${PSFILES}
 	${TEX} ihou.tex
 
 ${PDF}: ${DVI} 
-	${DVIPDF} ${DVI}
+	${DVIPDF} -p a5 ${DVI}
 
 ${PS}: ${DVI} 
 	${DVIPS} -t a5 ${DVI}
