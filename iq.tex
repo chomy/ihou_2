@@ -14,7 +14,7 @@ FMは次号としよう。
 
 前回同様、私の思考の過程を読者が辿れるようにするため、冗長なのは百も承知だが、
 数式の過程はできるだけ省かないことにする。
-また、章末のListing \cite{list:simulation}に、GNU Rで復調シミュレーションした時の
+また、章末のListing \ref{list:simulation}に、GNU Rで復調シミュレーションした時の
 ソースコードを掲載しておく。
 
 \section*{AM変調とは}
@@ -46,7 +46,8 @@ V_s = S\sin(2 \pi f_s t) = S\sin\omega_s t \label{eq:AM_sig}
 \scalebox{0.2}{\rotatebox{-90}{\includegraphics{sig.ps}}}
 \scalebox{0.2}{\rotatebox{-90}{\includegraphics{carr.ps}}}\\
 \scalebox{0.2}{\rotatebox{-90}{\includegraphics{am.ps}}}
-\caption{信号波(上段左)、搬送波(上段右)、AM変調波(下段)の例}
+\scalebox{0.2}{\rotatebox{-90}{\includegraphics{spec.ps}}}
+\caption{信号波(上段左)、搬送波(上段右)、AM変調波(下段左)、AM変調波のスペクトル(下段右)の例}
 \end{figure}
 
 この搬送波$V_c$が、$V_s$にAM変調されると、
@@ -142,4 +143,4 @@ DSPでは、式(\ref{eq:AM_DSP_I})と式(\ref{eq:AM_DSP_Q})の二乗の和の平
 \end{figure}
 
 \lstset{language=R}
-\lstinputlisting[caption=シミュレーションのソースコード]{sim.R}
+\lstinputlisting[caption=シミュレーションのソースコード,label=list:simulation]{sim.R}
