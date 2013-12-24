@@ -12,10 +12,10 @@ lpf <- function(signal, time, cutoff, smplfreq){
 
 N <- 10000 # Sampling Frequency
 t <- 1:N/N # Time
-C = 1			 # Carrier Amplitude
+C = 1	 # Carrier Amplitude
 fc= 30     # Carrier Frequency
 A = 0.7    # Signal Amplitude
-fs= 3			 # Signal Frequency
+fs= 3	 # Signal Frequency
 fl= 20     # Local Osc Freq
 
 # AM Modulation
